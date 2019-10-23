@@ -1,6 +1,9 @@
-class Slugifiable < ActiveRecord::Base
+require 'slugify'
+
+module Slugifiable #< ActiveRecord::Base
   def slug
-    name.downcase.gsub(" ", '-')
+    name.slugify
+    #name.downcase.gsub(" ", '-')
   end
 
   def self.find_by_slug(slug)
